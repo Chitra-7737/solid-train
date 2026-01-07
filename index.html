@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attractive Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4f46e5, #ec4899);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px 36px;
+      color: #f9fafb;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(14px);
+      text-align: center;
+      width: 320px;
+      border: 1px solid rgba(248, 250, 252, 0.2);
+    }
+
+    .title {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 24px;
+    }
+
+    #message {
+      font-size: 18px;
+      margin-bottom: 24px;
+      color: #e5e7eb;
+    }
+
+    .btn {
+      position: relative;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+      background: #facc15;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, #ffffff66, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.5);
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 6px 15px rgba(15, 23, 42, 0.5);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">Live Demo</div>
+    <h1 class="title">Mini Greeting App</h1>
+    <p class="subtitle">Click the button and watch the message and colors change.</p>
+
+    <p id="message">Ready to make the day brighter?</p>
+
+    <button class="btn" id="magicButton">Make it awesome ✨</button>
+  </div>
+
+  <script>
+    const button = document.getElementById("magicButton");
+    const message = document.getElementById("message");
+    const body = document.body;
+
+    const gradients = [
+      "linear-gradient(135deg, #4f46e5, #ec4899)",
+      "linear-gradient(135deg, #22c55e, #0ea5e9)",
+      "linear-gradient(135deg, #f97316, #ef4444)",
+      "linear-gradient(135deg, #6366f1, #14b8a6)"
+    ];
+
+    const texts = [
+      "You are doing better than you think.",
+      "One small step can change everything.",
+      "Cloud + Code = Unlimited possibilities.",
+      "Today is a great day to build something new."
+    ];
+
+    let index = 0;
+
+    button.addEventListener("click", () => {
+      index = (index + 1) % gradients.length;
+      body.style.background = gradients[index];
+      message.textContent = texts[index];
+
+      // small click animation via JS
+      button.style.transform = "translateY(-2px) scale(1.05)";
+      setTimeout(() => {
+        button.style.transform = "";
+      }, 150);
+    });
+  </script>
+</body>
+</html>
